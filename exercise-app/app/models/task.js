@@ -36,6 +36,16 @@ export default Ember.Object.extend({
     timer: null,
 
     /**
+     * The timer in readable text.
+     *
+     * @property readableTimer
+     * @type {String}
+     */
+    readableTime: Ember.computed('timer', function () {
+        return this.get('timer') ? `${this.get('timer') / 1000 / 60} minutes` : null;
+    }),
+
+    /**
      * The number of repetitions that the user should make to complete the exercise.
      *
      * @property reps
@@ -50,5 +60,15 @@ export default Ember.Object.extend({
      * @property weight
      * @type {Number}
      */
-    weight: null
+    weight: null,
+
+    /**
+     * Does the task have a weight?
+     *
+     * @property hasWeight
+     * @type {Boolean}
+     */
+    hasWeight: Ember.computed('weight', function () {
+        return typeof this.get('weight') === 'number';
+    })
 });

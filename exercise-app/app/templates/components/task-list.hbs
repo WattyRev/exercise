@@ -1,1 +1,15 @@
-{{yield}}
+<ul>
+    {{#each steps as |step|}}
+        <li class="{{if (eq step.stepNumber currentStep) 'current'}} {{if step.isComplete 'complete'}}" {{action 'activateStep' step}}>
+            <p><strong>{{step.task.title}}</strong></p>
+            {{#if step.task.timer}}
+                <p>for {{step.task.readableTime}}.</p>
+                {{#if step.showTimer}}
+                    {{task-timer duration=step.task.timer step=step onComplete="timerEnded"}}
+                {{/if}}
+            {{else if step.task.reps}}
+                <p>for {{step.task.reps}} reps{{#if step.task.hasWeight}} at {{step.task.weight}} lbs{{/if}}.</p>
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>
