@@ -9,6 +9,13 @@ export default Ember.Component.extend({
      */
     duration: null,
 
+    /**
+     * An internally edited duration.
+     *
+     * @property _duration
+     * @type {Number}
+     * @private
+     */
     _duration: Ember.computed.oneWay('duration'),
 
     /**

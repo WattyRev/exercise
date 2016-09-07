@@ -35,6 +35,13 @@ export default Ember.Component.extend({
     }),
 
     actions: {
+        /**
+         * Activate the step.
+         *
+         * @method activateStep
+         * @param {Object} step
+         * @return {Void}
+         */
         activateStep(step) {
             if (step.stepNumber !== this.get('currentStep')) {
                 return;
@@ -51,11 +58,29 @@ export default Ember.Component.extend({
             }
         },
 
+        /**
+         * Handle when a timer has ended.
+         *
+         * @method timerEnded
+         * @param {Object} step
+         * @return {Void}
+         */
         timerEnded(step) {
             step.setProperties({
                 showTimer: false,
                 isComplete: true
             });
+        },
+
+        /**
+         * Edit a step.
+         *
+         * @method editStep
+         * @param {Object} step
+         * @return {Void}
+         */
+        editStep(step) {
+            step.set('isEditing', true);
         }
     }
 });

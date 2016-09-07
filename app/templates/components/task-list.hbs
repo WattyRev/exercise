@@ -1,15 +1,25 @@
 <ul>
     {{#each steps as |step|}}
-        <li class="{{if (eq step.stepNumber currentStep) 'current'}} {{if step.isComplete 'complete'}}" {{action 'activateStep' step}}>
-            <p><strong>{{step.task.title}}</strong></p>
-            {{#if step.task.timer}}
-                <p>for {{step.task.readableTime}}.</p>
-                {{#if step.showTimer}}
-                    {{task-timer duration=step.task.timer step=step onComplete="timerEnded"}}
+        <div>
+            <li class="{{if (eq step.stepNumber currentStep) 'current'}} {{if step.isComplete 'complete'}}" {{action 'activateStep' step}}>
+                <p><strong>{{step.task.title}}</strong></p>
+                {{#if step.task.timer}}
+                    <p>for {{step.task.readableTime}}.</p>
+                    {{#if step.showTimer}}
+                        {{task-timer duration=step.task.timer step=step onComplete="timerEnded"}}
+                    {{/if}}
+                {{else if step.task.reps}}
+                    <p>for {{step.task.reps}} reps{{#if step.task.hasWeight}} at {{step.task.weight}} lbs{{/if}}.</p>
                 {{/if}}
-            {{else if step.task.reps}}
-                <p>for {{step.task.reps}} reps{{#if step.task.hasWeight}} at {{step.task.weight}} lbs{{/if}}.</p>
+            </li>
+            {{#if (or step.task.timer step.task.hasWeight)}}
+                <a class="edit" {{action 'editStep' step}}>Edit</a>
             {{/if}}
-        </li>
+            {{#if step.isEditing}}
+                {{manage-task step=step}}
+            {{/if}}
+        </div>
+    {{else}}
+        <h3>No exercises to complete today</h3>
     {{/each}}
 </ul>

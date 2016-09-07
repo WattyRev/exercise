@@ -1,1 +1,13 @@
-{{yield}}
+<div class="modal-backdrop" {{action 'close'}}></div>
+<div class="modal">
+    {{#if step.task.timer}}
+        <label>Exercise Duration (minutes)</label>
+        {{input value=displayTimer type="tel"}}
+    {{/if}}
+    {{#if step.task.hasWeight}}
+        <label>Weight Used (lbs)</label>
+        {{input value=weight type="tel"}}
+    {{/if}}
+    <button {{action 'close'}}>Cancel</button>
+    <button {{action 'save'}} class="primary">Save</button>
+</div>

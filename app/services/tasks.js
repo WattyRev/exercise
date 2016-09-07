@@ -31,7 +31,7 @@ export default Ember.Service.extend({
      */
     _tasks: Ember.computed('_rawTasks.@each', function () {
         return this.get('_rawTasks').map(task => {
-            let config = this.get('_savedConfigurations').findBy('taskId', task.id);
+            let config = this.get('_savedConfigurations').findBy('taskid', task.id);
             let newTask = TaskModel.create(task);
             if (config) {
                 newTask.setProperties(config);
@@ -47,7 +47,7 @@ export default Ember.Service.extend({
      * @return {Object[]}
      */
     getTodaysList() {
-        let today = 1; //new Date().getDay();
+        let today = new Date().getDay();
         let list = Ember.makeArray();
         this.get('_tasks').filter(task => {
             return task.get('days').indexOf(today) > -1;
