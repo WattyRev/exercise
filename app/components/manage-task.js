@@ -42,6 +42,14 @@ export default Ember.Component.extend({
      */
     weight: Ember.computed.oneWay('step.task.weight'),
 
+    setup: Ember.on('didInsertElement', function () {
+        Ember.$('body:not(.modal-open)').addClass('modal-open');
+    }),
+
+    teardown: Ember.on('willDestroyElement', function () {
+        Ember.$('body.modal-open').removeClass('modal-open');
+    }),
+
     actions: {
         /**
          * Close the modal.
