@@ -1,4 +1,4 @@
-<div class="modal-backdrop" {{action 'close'}}></div>
+<div class="modal-backdrop" {{action 'close' on="touchStart"}}></div>
 <div class="modal">
     {{#if step.task.timer}}
         <label>Exercise Duration (minutes)</label>
@@ -8,6 +8,6 @@
         <label>Weight Used (lbs)</label>
         {{input value=weight type="tel"}}
     {{/if}}
-    <button {{action 'close'}}>Cancel</button>
-    <button {{action 'save'}} class="primary">Save</button>
+    <button {{action 'close' on="touchStart"}}>Cancel</button>
+    <button {{action 'save' on="touchStart"}} class="primary">Save</button>
 </div>

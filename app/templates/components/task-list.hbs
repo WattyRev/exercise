@@ -1,7 +1,7 @@
 <ul>
     {{#each steps as |step|}}
         <div>
-            <li class="{{if (eq step.stepNumber currentStep) 'current'}} {{if step.isComplete 'complete'}}" {{action 'activateStep' step}}>
+            <li class="{{if (eq step.stepNumber currentStep) 'current'}} {{if step.isComplete 'complete'}}" {{action 'activateStep' step on="touchStart"}}>
                 <p><strong>{{step.task.title}}</strong></p>
                 {{#if step.task.timer}}
                     <p>for {{step.task.readableTime}}.</p>
@@ -13,7 +13,7 @@
                 {{/if}}
             </li>
             {{#if (or step.task.timer step.task.hasWeight)}}
-                <a class="edit" {{action 'editStep' step}}>Edit</a>
+                <a class="edit" {{action 'editStep' step on="touchStart"}}>Edit</a>
             {{/if}}
             {{#if step.isEditing}}
                 {{manage-task step=step}}
